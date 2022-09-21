@@ -3,7 +3,7 @@
 This project serves as a very slim backend API developed with the help of Django-REST-Framework and Docker.
 You can read more on [DRF](https://www.django-rest-framework.org/) and [Docker](https://docs.docker.com/).
 
-##Project Structure
+## Project Structure
 ```
 Techwondoe-Assigment
 |---companytech
@@ -39,7 +39,7 @@ Company tech will contain settings of project and tech includes the django app.
 --docker-compose will contain instructions needed to run and build a container.
 --Dockerfile contains docker settings and app directory which will contain instruction that will be executed each time we build the container.
 
-##Installing dependencies
+## Installing dependencies
 All the requiremets or dependencies are included in requirements.txt file with the help of which user to install all dependencies by using the following command. 
 ```
 pip install -r requiements.txt
