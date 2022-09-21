@@ -81,6 +81,10 @@ def company_data(request):
         serializer = CompanySerializer(posts, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
+        cname = request.data.get('CompanyName')
+        company = Company.objects.filter(CompanyName=cname).first()
+        if company is not None:
+            return Response("Company Already exists")
         serializer = CompanySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
