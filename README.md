@@ -32,7 +32,7 @@ Techwondoe-Assigment
 |---requirements.txt
 ```
 
-company tech will contain settings of project and tech includes the django app.
+Company tech will contain settings of project and tech includes the django app.
 --Models.py will contain the schema
 --urls.py of companytech will contain urls mapped with urls of tech.
 --views.py contains all the API function which are further mapped with urls.py with some routing.
@@ -51,10 +51,10 @@ To authenticate a user require username and password. whenever user submit these
 
 Now, whenever a user access an API that have login required then the token will be taken from cookies then verified with the help of jwt.decode function. If it successfully verified then it will access those API. If the token expires then user needs to be authenticate again in order to access those routes.
 
-#SuperUser Auth
+## SuperUser Auth
 All the CRUD operations are only accessed by superuser only or admin only. So, the user once verified need to be checked for the role whether it is a super user or not, if it is then they will access the API, else "Access Denied" will be returned as response.
 
-##Creating SuperUser
+## Creating SuperUser
 One can use following command to create an super user.
 ```
 python manage.py createsuperuser
@@ -74,6 +74,7 @@ docker-compose up
 
 which should result in output such as:
 
+```
 [+] Running 1/0
  - Container techwondoe-assignment-web-1  Created                                                                                                                        0.0s
 Attaching to techwondoe-assignment-web-1
@@ -98,10 +99,10 @@ indicating the server is now listening at port 8000.
 
 The server is now ready to run at [URL](http://127.0.0.1:8000/api/).
 
-##Models(Schema)
+## Models(Schema)
 This project will contain two models company and team.
 
-###Company
+### Company
 It will contain fields which are given below:
 -- UUID (primary Key)
 -- Company name
@@ -109,58 +110,58 @@ It will contain fields which are given below:
 -- Company address
 -- Inception date
 
-###Teams
+### Teams
 It will contain fields which are given below:
 -- UUID (primary Key)
 -- CompanyID (Foreign Key)
 -- Team Lead Name
 
-##Serializers
+## Serializers
 Serializers helps to convert complex data type such as object to data types understandable by javascript and front-end frameworks.
 They also provides deserialization which allows parsed data to be converted back into complex types, after first validating the incoming data.
 You can read more about it on [Serializers](https://www.django-rest-framework.org/api-guide/serializers/).
 
-##Routes
+## Routes
 The project contain some API that are mapped to some URL which are given below.
 
-###LOGIN
+### LOGIN
 In order to access the Routes, User needs to be authenticated and only superuser has the access to perform CRUD operations.
 User can login via [URL](http://127.0.0.1:8000/api/login)
 This require two parameters - username, password as JSON Object.
 On successful signIn a JWT token will be generated and stored in cookie which will further used for verifying the logged in user.
 The API will return the JWT Token as response.
 
-###Create a Company
+### Create a Company
 User can create a company using [URL](http://127.0.0.1:8000/api/)
 In order to create a company, user need to enter data in the form of JSON object in the APIview provided by Django-REST-Framework.
 JSON object will contain all details provided in the above model except UUID. UUID will be created automatically once a company will be created.
 On entering the data, it will first check whether any Company exists with the same name. If it exits, then it will return a response that "Company Already Exists", else it will create a company after verifying the data through serializer.
 
-###Create a Team
+### Create a Team
 User can create a team using http://127.0.0.1:8000/api/team/create/companyid 
 In this user need to enter companyid in the url path in place of companyid
 In order to create a team, user need to enter data in the form of JSON object in the APIview provided by Django-REST-Framework.
 JSON object will contain all details provided in the above model except UUID. UUID will be created automatically once a company will be created.
 It will create a team after verifying the data through serializer.
 
-###Get Company object from ID
+### Get Company object from ID
 User can get company details from company ID using two routes, one needs ID in path, second needs ID as an JSON object.
 
-####ID in path
+#### ID in path
 User can get a company details using http://127.0.0.1:8000/api/company/id/CompanyID.
 user need to enter companyid in the url path in place of CompanyID.
 
-####ID as JSON
+#### ID as JSON
 User can get company details using http://127.0.0.1:8000/api/company/id
 User need to enter data companyid as JSON object.
 It will return company details after passing through serializer.
 
-###Search company by name
+### Search company by name
 User can get a company details using http://127.0.0.1:8000/api/company/name
 User need to enter data companyName as JSON object.
 It will return company details after passing through serializer.
 
-###Get All Teams
+### Get All Teams
 It will return all teams as an array grouped within company object using http://127.0.0.1:8000/api/team/group
 
 
